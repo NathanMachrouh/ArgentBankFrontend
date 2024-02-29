@@ -35,7 +35,7 @@ function Form() {
             if (response.ok) {
                 const data = await response.json();
                 /* 
-                    Vérification de la requete
+                    Vérification de la requete de connexion
                 */
                 const token = data.body.token;
                 dispatch(loginSuccess(token));

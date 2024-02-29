@@ -24,7 +24,7 @@ function UserProfile () {
                     if (response.ok) {
                         const data = await response.json();
                         /* 
-                            Vérification de la requete
+                            Vérification de la requete pour récupérer les données utilisateurs
                         */
                         const userData = {
                             createdAt: data.body.createdAt,

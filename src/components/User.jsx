@@ -5,19 +5,19 @@ import { isValidName } from "../regex.jsx";
 import '../sass/components/_UserProfile.scss';
 
 function User () {
-    /* Updates user data on profile page from state redux */
+    /* Mise à jour des données de l'utilisateur sur la page de profil */
     const token = useSelector((state) => state.auth.token);
     const userData = useSelector((state) => state.user.userData);
-    /* Manages the appearance of the username modification form */
+    /* Gère l'apparence du formulaire de modification du nom d'utilisateur */
     const [display, setDisplay] = useState(true);
-    /* Get username */
+    /* Nom d'utilisateur */
     const [userName, setUserName] = useState('');
-    /* Handle error message */
+    /* Gestion message d'erreur */
     const [errorMessage, setErrorMessage] = useState('');
 
     const dispatch = useDispatch();
 
-    /* Asynchronous username update function */
+    /* Mise à jour du nom d'utilisateur (Asynchrone) */
     const handleSubmitUsername = async (event) => {
         event.preventDefault();
         if (!isValidName(userName)) {
@@ -39,7 +39,7 @@ function User () {
                 const data = await response.json();
                 const username = data.body.userName;
                 /* 
-                    Checking that the query response is indeed retrieved
+                    Vérification de la réponse de la requete
                     console.log(data) 
                 */
                 dispatch(updateUsername(username));
