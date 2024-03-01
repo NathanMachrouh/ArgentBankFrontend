@@ -101,10 +101,10 @@ paths:
           description: Invalid Fields
         '500':
           description: Internal Server Error
-  /user/account:
+  /account:
     get: 
       tags:
-        - Accounts Module
+        - Account Module
       summary: All accounts
       description: API for retrieving all user account
       security:
@@ -120,10 +120,10 @@ paths:
           description: Unauthorized user
         '500':
           description: Internal Server Error
-  /account/{accountID}/transactions:
+  /account/{accountID}/transaction:
     get:
       tags:
-        - Accounts Module
+        - Account Module
       summary: Account transactions
       description: API for retrieving list of transactions assiocated with an account
       security: 
@@ -140,17 +140,17 @@ paths:
           schema: 
             type: array
             items:
-              $ref: '#/definitions/TransactionsResponse'
+              $ref: '#/definitions/TransactionResponse'
         '401':
           description: Unauthorized user
         '404': 
           description: Account not found
         '500':
           description: Internal Server Error
-  /transactions/{transactionID}/category:
+  /transaction/{transactionID}/category:
     put:
       tags:
-        - Transactions Module
+        - Transaction Module
       summary: Update transaction's category
       description: API for updating category of transaction
       security: 
@@ -178,10 +178,10 @@ paths:
           description: Transaction not found
         '500': 
           description: Internal Servor Error
-  /transactions/{id}:
+  /transaction/{id}:
     get:
       tags:
-        - Transactions Module
+        - Transaction Module
       summary: Add transaction's note
       description: API for adding a note to a transaction
       security: 
@@ -192,27 +192,21 @@ paths:
           description: ID of a transaction
           required: true
           type: string
-        - in: body
-          name: note
-          description: New transaction's note
-          required: true
-          schema: 
-            $ref: '#/definitions/TransactionNote'
       responses:
         '200':
           description: Note added to the transaction successfully
           schema: 
-            $ref: '#/definitions/TransactionResponseNote'
+            $ref: '#/definitions/TransactionResponse'
         '401':
           description: Unauthorized user
         '404':
           description: Note not created
         '500':
           description: Internal Server Error
-  /transactions/{transactionID}/note/{noteID}:
+  /transaction/{transactionID}/note:
     put:
       tags:
-        - Transactions Module
+        - Transaction Module
       summary: Modify transaction's note
       description: API for modifying a note of a transaction
       security: 
@@ -221,11 +215,6 @@ paths:
         - in: path
           name: transactionID
           description: ID of a transaction
-          required: true
-          type: string
-        - in: path
-          name: noteID
-          description: ID of a note
           required: true
           type: string
         - in: body
@@ -316,7 +305,7 @@ definitions:
           type: number
           description: current account balance
           format: double
-  TransactionsResponse:
+  TransactionResponse:
     type: object
     properties:
       transactionID: 
