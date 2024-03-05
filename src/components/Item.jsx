@@ -1,6 +1,6 @@
 import '../sass/components/_Item.scss';
 
-/* Component function that returns the items from the home page */
+/* Renvoie les éléments de la page d'accueil */
 // eslint-disable-next-line react/prop-types
 function Item ({ image, descriptionImage, title, description }) {
     return (
